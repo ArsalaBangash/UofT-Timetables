@@ -30,13 +30,13 @@
 
       <v-stepper-content step="2">
         <v-card class="mb-12" color="grey lighten-1" height="300px">
-          <v-calendar
+          <v-calendar 
             type="week"
             :first-interval="intervals.first"
             :interval-minutes="intervals.minutes"
             :interval-count="intervals.count"
             :interval-height="intervals.height"
-            :weekdays="weekdays"
+            :weekdays="schoolDays"
           ></v-calendar>
         </v-card>
 
@@ -63,7 +63,7 @@ export default {
   computed: {
     schoolDays() {
       const selectedDayNumbers = this.selectedDays.map(day => this.dayMapping[day])
-      return this.weekdays.filter(dayNumber => selectedDayNumbers.includes(dayNumber))
+      return this.weekdays.filter(dayNumber => !selectedDayNumbers.includes(dayNumber))
     }
   },
   data() {
