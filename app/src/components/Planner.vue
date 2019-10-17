@@ -37,6 +37,8 @@
             :interval-count="intervals.count"
             :interval-height="intervals.height"
             :weekdays="schoolDays"
+            :events="events"
+            @click:time="timeClicked"
           ></v-calendar>
         </v-card>
 
@@ -79,8 +81,21 @@ export default {
         Friday: 5
       },
       days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      intervals: { first: 6, minutes: 60, count: 16, height: 40 }
+      intervals: { first: 6, minutes: 60, count: 16, height: 40 },
+      events: []
     };
+  },
+  methods:{
+    timeClicked(time){
+      console.log(time)
+      const event_start = time.date + " " + time.time.substring(0,2) + ":00"
+      var event = {
+        name: "Start of the day",
+        start: event_start
+      }
+      this.events.push(event)
+      console.log(event)
+    }
   }
 };
 </script>
